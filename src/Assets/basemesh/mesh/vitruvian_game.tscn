@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://b5sy4738a4kjy"]
+
+[ext_resource type="PackedScene" uid="uid://cb7fbr8ac4ncv" path="res://Assets/basemesh/mesh/vitruvian_game.gltf" id="1_085kq"]
+[ext_resource type="Shader" uid="uid://rwmp12dnfv7m" path="res://Thirdparty/HumanShaders/skin_shader.gdshader" id="2_6kela"]
+[ext_resource type="Texture2D" uid="uid://dpjnvkpixmlu4" path="res://Assets/basemesh/mesh/textures/skin_light_col_combined.png" id="3_asl3s"]
+[ext_resource type="Texture2D" uid="uid://bg5wg2pb2tpm7" path="res://Thirdparty/HumanShaders/Resources/lightwarp_skin1.tres" id="3_ihi80"]
+[ext_resource type="Texture2D" uid="uid://dk0niewbsorrm" path="res://Assets/basemesh/mesh/textures/skin_disp_combined_normal.png" id="4_ihi80"]
+[ext_resource type="Texture2D" uid="uid://tn8g4mhnmjj6" path="res://Assets/basemesh/mesh/textures/sclera_col_1005.png" id="5_cjcab"]
+[ext_resource type="Shader" uid="uid://csvuff5c4qll4" path="res://Thirdparty/HumanShaders/vshader_eye_wetness.tres" id="6_ihi80"]
+[ext_resource type="Texture2D" uid="uid://l5l50xkrn107" path="res://Assets/basemesh/mesh/textures/sclera_rough_1005.png" id="6_p1nr4"]
+[ext_resource type="Texture2D" uid="uid://bede00e18hwup" path="res://Assets/basemesh/mesh/textures/lacrimal_caruncle_col_exr.png" id="7_5wit4"]
+[ext_resource type="Shader" uid="uid://d2g7aivk5gfxs" path="res://Assets/iris.gdshader" id="9_5wit4"]
+[ext_resource type="Texture2D" uid="uid://dp6qt10dpsgj7" path="res://Assets/basemesh/mesh/textures/iris_col_1007.png" id="10_mo61q"]
+[ext_resource type="Texture2D" uid="uid://du1ms8u3imnmd" path="res://Assets/basemesh/mesh/textures/iris_rough_1007.png" id="11_5f6ed"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mo61q"]
+render_priority = 0
+shader = ExtResource("2_6kela")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("3_asl3s")
+shader_parameter/roughness = 0.4
+shader_parameter/specular = 0.5
+shader_parameter/double_specularity = true
+shader_parameter/metallic = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/texture_normal = ExtResource("4_ihi80")
+shader_parameter/normal_strength = 1.0
+shader_parameter/use_micro_detail = false
+shader_parameter/micro_detail_scale = 25.0
+shader_parameter/micro_normal_strength = 0.3
+shader_parameter/micro_ao_strength = 0.4
+shader_parameter/use_ambient_occlusion = false
+shader_parameter/ao_strength = 0.5
+shader_parameter/ao_block_light = 0.5
+shader_parameter/use_subsurface_scattering = true
+shader_parameter/use_noise = true
+shader_parameter/subsurface_scattering_strength = 0.4
+shader_parameter/skin_smoothness = 5.0
+shader_parameter/skin_fallof_smoothness = 1.0
+shader_parameter/tinted_shadow_penumbra = false
+shader_parameter/old_lightwarp_fallof = false
+shader_parameter/lightwarp = ExtResource("3_ihi80")
+shader_parameter/translucency = false
+shader_parameter/translucency_strength = 0.75
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cjcab"]
+render_priority = 0
+shader = ExtResource("6_ihi80")
+shader_parameter/Roughness = 0.2
+shader_parameter/UseMicroDetail = false
+shader_parameter/MicroDetailSize = 25.0
+shader_parameter/ShadowColor = Color(1, 1, 1, 1)
+shader_parameter/Shadow = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8cktr"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5f6ed"]
+resource_name = "Sclera_Cornea_001"
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("5_cjcab")
+metallic_texture = ExtResource("6_p1nr4")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("6_p1nr4")
+roughness_texture_channel = 1
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fbawt"]
+resource_name = "Iris_001"
+render_priority = 0
+shader = ExtResource("9_5wit4")
+shader_parameter/iris = Color(0.9, 0.6, 0.3, 1)
+shader_parameter/texture_iris = ExtResource("10_mo61q")
+shader_parameter/roughness = 1.0
+shader_parameter/texture_metallic = ExtResource("11_5f6ed")
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 1, 0)
+shader_parameter/texture_roughness = ExtResource("11_5f6ed")
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fbawt"]
+resource_name = "LacrimalCaruncle_001"
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.5058824)
+albedo_texture = ExtResource("7_5wit4")
+roughness = 0.15
+metadata/_gltf_primary_texture_coord = 0
+
+[node name="VitruvianGame" unique_id=1370476621 instance=ExtResource("1_085kq")]
+
+[node name="cm_vitruvian_001" parent="mixamo_vitruvian_001/Skeleton3D" parent_id_path=PackedInt32Array(1181813751) index="0" unique_id=965449332]
+surface_material_override/0 = SubResource("ShaderMaterial_mo61q")
+surface_material_override/2 = SubResource("ShaderMaterial_cjcab")
+surface_material_override/3 = SubResource("StandardMaterial3D_8cktr")
+surface_material_override/4 = SubResource("StandardMaterial3D_5f6ed")
+surface_material_override/5 = SubResource("ShaderMaterial_fbawt")
+surface_material_override/7 = SubResource("StandardMaterial3D_fbawt")

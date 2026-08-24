@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://br6ycldpayca0"]
+
+[ext_resource type="PackedScene" uid="uid://b5sy4738a4kjy" path="res://Assets/basemesh/mesh/vitruvian_game.tscn" id="1_idj7w"]
+[ext_resource type="Script" uid="uid://0en4yew8j7" path="res://Scripts/UI.gd" id="2_kln2b"]
+[ext_resource type="Script" uid="uid://sg0m8p1v43p1" path="res://Thirdparty/FreeLookCamera/free_look_camera.gd" id="3_kln2b"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ntbkr"]
+size = Vector2(4, 4)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kln2b"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_rgh2o"]
+sky_material = SubResource("ProceduralSkyMaterial_kln2b")
+
+[sub_resource type="Environment" id="Environment_pbw6q"]
+background_mode = 2
+sky = SubResource("Sky_rgh2o")
+ssao_enabled = true
+
+[node name="Main" type="Node3D" unique_id=1124202610]
+
+[node name="UI" type="Control" parent="." unique_id=1111341470]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_kln2b")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI" unique_id=1536903967]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.44400004
+anchor_bottom = 1.0
+offset_right = 0.5119629
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ScrollContainer" unique_id=583723305]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/ScrollContainer/VBoxContainer" unique_id=130723861]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+text = "Vitruvian Human for Godot
+License: CC0"
+
+[node name="HSeparator" type="HSeparator" parent="UI/ScrollContainer/VBoxContainer" unique_id=493514128]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="UI/ScrollContainer/VBoxContainer" unique_id=1734151853]
+layout_mode = 2
+text = "Eye color"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="UI/ScrollContainer/VBoxContainer" unique_id=363610927]
+layout_mode = 2
+text = "Eye color"
+color = Color(1, 0.6858952, 0.53538185, 1)
+edit_alpha = false
+
+[node name="HSeparator2" type="HSeparator" parent="UI/ScrollContainer/VBoxContainer" unique_id=1274027082]
+layout_mode = 2
+
+[node name="BlendShapes" type="FoldableContainer" parent="UI/ScrollContainer/VBoxContainer" unique_id=852824021]
+layout_mode = 2
+folded = true
+title = "Blend Shapes"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ScrollContainer/VBoxContainer/BlendShapes" unique_id=782743031]
+visible = false
+layout_mode = 2
+
+[node name="VitruvianGame" parent="." unique_id=1370476621 instance=ExtResource("1_idj7w")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=590812994]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6369157, 0.3294134)
+script = ExtResource("3_kln2b")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1445931910]
+transform = Transform3D(1, 0, 0, 0, 0.4949125, 0.8689428, 0, -0.8689428, 0.4949125, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1141313311]
+mesh = SubResource("PlaneMesh_ntbkr")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=627180035]
+environment = SubResource("Environment_pbw6q")
+
+[connection signal="color_changed" from="UI/ScrollContainer/VBoxContainer/ColorPickerButton" to="UI" method="_on_color_picker_button_color_changed"]
