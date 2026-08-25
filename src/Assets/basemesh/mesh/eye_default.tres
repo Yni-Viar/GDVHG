@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cpc7hrnon53k"]
+
+[ext_resource type="Texture2D" uid="uid://dp6qt10dpsgj7" path="res://Assets/basemesh/mesh/textures/iris_col_1007.png" id="1_jpiwv"]
+[ext_resource type="Texture2D" uid="uid://du1ms8u3imnmd" path="res://Assets/basemesh/mesh/textures/iris_rough_1007.png" id="2_ox64p"]
+
+[resource]
+resource_name = "Iris_001"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_jpiwv")
+metallic_texture = ExtResource("2_ox64p")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_ox64p")
+roughness_texture_channel = 1
+metadata/_gltf_primary_texture_coord = 0

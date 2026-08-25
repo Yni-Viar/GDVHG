@@ -3,6 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://b5sy4738a4kjy" path="res://Assets/basemesh/mesh/vitruvian_game.tscn" id="1_idj7w"]
 [ext_resource type="Script" uid="uid://0en4yew8j7" path="res://Scripts/UI.gd" id="2_kln2b"]
 [ext_resource type="Script" uid="uid://sg0m8p1v43p1" path="res://Thirdparty/FreeLookCamera/free_look_camera.gd" id="3_kln2b"]
+[ext_resource type="Shader" uid="uid://esv0jtmy6uo8" path="res://Assets/iris_texture.gdshader" id="4_pbw6q"]
+[ext_resource type="Texture2D" uid="uid://dp6qt10dpsgj7" path="res://Assets/basemesh/mesh/textures/iris_col_1007.png" id="5_v1gob"]
+[ext_resource type="Shader" uid="uid://f5c7goao0haw" path="res://Assets/skin_texture.gdshader" id="6_50glp"]
+[ext_resource type="Texture2D" uid="uid://ckq73x8t5yqry" path="res://Assets/basemesh/mesh/textures/skin_dark_col_combined.png" id="7_vy5pj"]
+[ext_resource type="Texture2D" uid="uid://dpjnvkpixmlu4" path="res://Assets/basemesh/mesh/textures/skin_light_col_combined.png" id="8_bmxlf"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ntbkr"]
 size = Vector2(4, 4)
@@ -18,6 +23,17 @@ sky_material = SubResource("ProceduralSkyMaterial_kln2b")
 background_mode = 2
 sky = SubResource("Sky_rgh2o")
 ssao_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jw32o"]
+shader = ExtResource("4_pbw6q")
+shader_parameter/iris = Color(1, 0.6858952, 0.53538185, 1)
+shader_parameter/texture_iris = ExtResource("5_v1gob")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4kpch"]
+shader = ExtResource("6_50glp")
+shader_parameter/skin_light = ExtResource("8_bmxlf")
+shader_parameter/skin_dark = ExtResource("7_vy5pj")
+shader_parameter/value = 0.0
 
 [node name="Main" type="Node3D" unique_id=1124202610]
 
@@ -47,7 +63,27 @@ layout_mode = 2
 text = "Vitruvian Human for Godot
 License: CC0"
 
+[node name="BakeMesh" type="CheckBox" parent="UI/ScrollContainer/VBoxContainer" unique_id=1886170021]
+layout_mode = 2
+text = "Bake mesh"
+
+[node name="SaveHuman" type="Button" parent="UI/ScrollContainer/VBoxContainer" unique_id=2008815839]
+layout_mode = 2
+text = "Export human"
+
 [node name="HSeparator" type="HSeparator" parent="UI/ScrollContainer/VBoxContainer" unique_id=493514128]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="UI/ScrollContainer/VBoxContainer" unique_id=1013877047]
+layout_mode = 2
+text = "Skin color (left is light, right is dark)"
+
+[node name="SkinColor" type="HSlider" parent="UI/ScrollContainer/VBoxContainer" unique_id=34122697]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="HSeparator3" type="HSeparator" parent="UI/ScrollContainer/VBoxContainer" unique_id=933141745]
 layout_mode = 2
 
 [node name="Label3" type="Label" parent="UI/ScrollContainer/VBoxContainer" unique_id=1734151853]
@@ -87,4 +123,36 @@ mesh = SubResource("PlaneMesh_ntbkr")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=627180035]
 environment = SubResource("Environment_pbw6q")
 
+[node name="FileDialog" type="FileDialog" parent="." unique_id=252845306]
+initial_position = 2
+display_mode = 1
+access = 2
+filters = PackedStringArray("*.gltf", "model/gltf+json")
+
+[node name="EyeViewport" type="SubViewport" parent="." unique_id=669040720]
+disable_3d = true
+size = Vector2i(2048, 2048)
+view_count = 0
+render_target_update_mode = 4
+
+[node name="TextureRect" type="ColorRect" parent="EyeViewport" unique_id=22772959]
+material = SubResource("ShaderMaterial_jw32o")
+offset_right = 2048.0
+offset_bottom = 2048.0
+
+[node name="SkinViewport" type="SubViewport" parent="." unique_id=455557542]
+disable_3d = true
+size = Vector2i(4096, 4096)
+view_count = 0
+render_target_update_mode = 4
+
+[node name="TextureRect" type="ColorRect" parent="SkinViewport" unique_id=770535717]
+material = SubResource("ShaderMaterial_4kpch")
+offset_right = 4096.0
+offset_bottom = 4096.0
+
+[connection signal="toggled" from="UI/ScrollContainer/VBoxContainer/BakeMesh" to="UI" method="_on_bake_mesh_toggled"]
+[connection signal="pressed" from="UI/ScrollContainer/VBoxContainer/SaveHuman" to="UI" method="_on_save_human_pressed"]
+[connection signal="drag_ended" from="UI/ScrollContainer/VBoxContainer/SkinColor" to="UI" method="_on_skin_color_drag_ended"]
 [connection signal="color_changed" from="UI/ScrollContainer/VBoxContainer/ColorPickerButton" to="UI" method="_on_color_picker_button_color_changed"]
+[connection signal="file_selected" from="FileDialog" to="UI" method="_on_file_dialog_file_selected"]
