@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bede00e18hwup"
 path.s3tc="res://.godot/imported/lacrimal_caruncle_col_exr.png-f7578e86274468921347f3a993271b53.s3tc.ctex"
+path.etc2="res://.godot/imported/lacrimal_caruncle_col_exr.png-f7578e86274468921347f3a993271b53.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/basemesh/mesh/textures/lacrimal_caruncle_col_exr.png"
-dest_files=["res://.godot/imported/lacrimal_caruncle_col_exr.png-f7578e86274468921347f3a993271b53.s3tc.ctex"]
+dest_files=["res://.godot/imported/lacrimal_caruncle_col_exr.png-f7578e86274468921347f3a993271b53.s3tc.ctex", "res://.godot/imported/lacrimal_caruncle_col_exr.png-f7578e86274468921347f3a993271b53.etc2.ctex"]
 
 [params]
 

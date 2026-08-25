@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dp6qt10dpsgj7"
 path.s3tc="res://.godot/imported/iris_col_1007.png-c23c6d9543f4de48caa95417d4b1a2a6.s3tc.ctex"
+path.etc2="res://.godot/imported/iris_col_1007.png-c23c6d9543f4de48caa95417d4b1a2a6.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/basemesh/mesh/textures/iris_col_1007.png"
-dest_files=["res://.godot/imported/iris_col_1007.png-c23c6d9543f4de48caa95417d4b1a2a6.s3tc.ctex"]
+dest_files=["res://.godot/imported/iris_col_1007.png-c23c6d9543f4de48caa95417d4b1a2a6.s3tc.ctex", "res://.godot/imported/iris_col_1007.png-c23c6d9543f4de48caa95417d4b1a2a6.etc2.ctex"]
 
 [params]
 

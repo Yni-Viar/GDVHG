@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dd5ksordepaeh"
 path.s3tc="res://.godot/imported/mouth_col_1006.png-49252fbc82af181242e6c50355709d98.s3tc.ctex"
+path.etc2="res://.godot/imported/mouth_col_1006.png-49252fbc82af181242e6c50355709d98.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/basemesh/mesh/textures/mouth_col_1006.png"
-dest_files=["res://.godot/imported/mouth_col_1006.png-49252fbc82af181242e6c50355709d98.s3tc.ctex"]
+dest_files=["res://.godot/imported/mouth_col_1006.png-49252fbc82af181242e6c50355709d98.s3tc.ctex", "res://.godot/imported/mouth_col_1006.png-49252fbc82af181242e6c50355709d98.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dpjnvkpixmlu4"
 path.s3tc="res://.godot/imported/skin_light_col_combined.png-1adec5a58517ac5bde71d2ab41288460.s3tc.ctex"
+path.etc2="res://.godot/imported/skin_light_col_combined.png-1adec5a58517ac5bde71d2ab41288460.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/basemesh/mesh/textures/skin_light_col_combined.png"
-dest_files=["res://.godot/imported/skin_light_col_combined.png-1adec5a58517ac5bde71d2ab41288460.s3tc.ctex"]
+dest_files=["res://.godot/imported/skin_light_col_combined.png-1adec5a58517ac5bde71d2ab41288460.s3tc.ctex", "res://.godot/imported/skin_light_col_combined.png-1adec5a58517ac5bde71d2ab41288460.etc2.ctex"]
 
 [params]
 

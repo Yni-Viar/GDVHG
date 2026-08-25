@@ -5,6 +5,13 @@ var bake_mesh: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	match OS.get_name():
+		"Android":
+			get_parent().get_node("FileDialog").use_native_dialog = true
+		"Web":
+			$ScrollContainer/VBoxContainer/SaveHuman.queue_free()
+			$ScrollContainer/VBoxContainer/BakeMesh.queue_free()
+	
 	_parse_blendshapes()
 
 
@@ -115,3 +122,17 @@ func _on_skin_color_drag_ended(value_changed: bool) -> void:
 
 func _on_save_human_pressed() -> void:
 	get_parent().get_node("FileDialog").show()
+
+
+func _on_face_pressed() -> void:
+	get_parent().get_node("Camera3D").global_position = get_parent().get_node("FaceMarker").global_position
+
+
+func _on_body_pressed() -> void:
+	get_parent().get_node("Camera3D").global_position = get_parent().get_node("BodyMarker").global_position
+
+func _on_move_forward_button_down() -> void:
+	get_parent().get_node("Camera3D")._w = true
+
+func _on_move_forward_button_up() -> void:
+	get_parent().get_node("Camera3D")._w = false

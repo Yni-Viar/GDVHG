@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b5sy4738a4kjy" path="res://Assets/basemesh/mesh/vitruvian_game.tscn" id="1_idj7w"]
 [ext_resource type="Script" uid="uid://0en4yew8j7" path="res://Scripts/UI.gd" id="2_kln2b"]
-[ext_resource type="Script" uid="uid://sg0m8p1v43p1" path="res://Thirdparty/FreeLookCamera/free_look_camera.gd" id="3_kln2b"]
+[ext_resource type="Script" uid="uid://dxgnqbgfkcfxh" path="res://Thirdparty/SimpleFreeLookCamera/camera.gd" id="3_50glp"]
 [ext_resource type="Shader" uid="uid://esv0jtmy6uo8" path="res://Assets/iris_texture.gdshader" id="4_pbw6q"]
 [ext_resource type="Texture2D" uid="uid://dp6qt10dpsgj7" path="res://Assets/basemesh/mesh/textures/iris_col_1007.png" id="5_v1gob"]
 [ext_resource type="Shader" uid="uid://f5c7goao0haw" path="res://Assets/skin_texture.gdshader" id="6_50glp"]
@@ -53,6 +53,7 @@ anchor_right = 0.44400004
 anchor_bottom = 1.0
 offset_right = 0.5119629
 grow_vertical = 2
+mouse_filter = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/ScrollContainer" unique_id=583723305]
 layout_mode = 2
@@ -72,6 +73,22 @@ layout_mode = 2
 text = "Export human"
 
 [node name="HSeparator" type="HSeparator" parent="UI/ScrollContainer/VBoxContainer" unique_id=493514128]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/ScrollContainer/VBoxContainer" unique_id=154887284]
+layout_mode = 2
+
+[node name="Face" type="Button" parent="UI/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=422339888]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+text = "Face view"
+
+[node name="Body" type="Button" parent="UI/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=911093876]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+text = "Body view"
+
+[node name="HSeparator4" type="HSeparator" parent="UI/ScrollContainer/VBoxContainer" unique_id=1362620659]
 layout_mode = 2
 
 [node name="Label4" type="Label" parent="UI/ScrollContainer/VBoxContainer" unique_id=1013877047]
@@ -108,11 +125,30 @@ title = "Blend Shapes"
 visible = false
 layout_mode = 2
 
+[node name="MoveForward" type="Button" parent="UI" unique_id=1519949349]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Move forward"
+
 [node name="VitruvianGame" parent="." unique_id=1370476621 instance=ExtResource("1_idj7w")]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=590812994]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6369157, 0.3294134)
-script = ExtResource("3_kln2b")
+script = ExtResource("3_50glp")
+
+[node name="FaceMarker" type="Marker3D" parent="." unique_id=962494542]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6369157, 0.3294134)
+
+[node name="BodyMarker" type="Marker3D" parent="." unique_id=648687949]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8491018, 1.3188332)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1445931910]
 transform = Transform3D(1, 0, 0, 0, 0.4949125, 0.8689428, 0, -0.8689428, 0.4949125, 0, 0, 0)
@@ -153,6 +189,10 @@ offset_bottom = 4096.0
 
 [connection signal="toggled" from="UI/ScrollContainer/VBoxContainer/BakeMesh" to="UI" method="_on_bake_mesh_toggled"]
 [connection signal="pressed" from="UI/ScrollContainer/VBoxContainer/SaveHuman" to="UI" method="_on_save_human_pressed"]
+[connection signal="pressed" from="UI/ScrollContainer/VBoxContainer/HBoxContainer/Face" to="UI" method="_on_face_pressed"]
+[connection signal="pressed" from="UI/ScrollContainer/VBoxContainer/HBoxContainer/Body" to="UI" method="_on_body_pressed"]
 [connection signal="drag_ended" from="UI/ScrollContainer/VBoxContainer/SkinColor" to="UI" method="_on_skin_color_drag_ended"]
 [connection signal="color_changed" from="UI/ScrollContainer/VBoxContainer/ColorPickerButton" to="UI" method="_on_color_picker_button_color_changed"]
+[connection signal="button_down" from="UI/MoveForward" to="UI" method="_on_move_forward_button_down"]
+[connection signal="button_up" from="UI/MoveForward" to="UI" method="_on_move_forward_button_up"]
 [connection signal="file_selected" from="FileDialog" to="UI" method="_on_file_dialog_file_selected"]
